@@ -1,0 +1,839 @@
+@charset "UTF-8";
+@import url(reset.css);
+@import url('https://fonts.cdnfonts.com/css/copperplate');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+/* font-family: 'Copperplate', sans-serif; */
+/* font-family: 'Montserrat', sans-serif; */
+:root{
+   --body-color:rgb(28, 28, 28);
+}
+svg,path{display: block; overflow: visible;}
+*{box-sizing: border-box;}
+
+.container{margin: 0 auto;}
+html{}
+body{
+   font-family: 'Copperplate', sans-serif;
+   background-color: var(--body-color);
+   
+}
+.pointer{cursor: pointer;}
+/* ----------------------🎃social sns------------------------ */
+
+.social{
+   position: fixed; top: 50%; left: 0;
+   transform: translateY(-50%);
+   display: flex; flex-direction: column;
+   align-items: center; justify-items: center;
+   gap: 2rem; padding-left: 1.5rem;
+   z-index: 100;
+}
+.social::before,.social::after{
+   content: "";
+   width: 1px; height: 2rem;
+   background-color: rgba(255, 255, 255, 0.6);
+}
+.sns_icon{width: 1.5rem; height: 1.5rem; opacity: 0.8; transition: 0.3s;}
+.sns_icon:hover{scale: 1.4;}
+.sns_icon.facebook{
+   background: 50% 50%/cover url(../img/icon_facebook.png);
+}
+.sns_icon.insta{
+   background: 50% 50%/cover url(../img/icon_instagram.png);
+}
+.sns_icon.twitter{
+   background: 50% 50%/cover url(../img/icon_twitter.png);
+}
+
+
+/* ----------------------go top 버튼------------------------ */
+
+.top_button_wrapper{position: fixed; right: 3rem; bottom: 3rem;
+   width: 4rem; height: 4rem;
+   z-index: 105;
+   border: 3px solid #fff;
+   border-radius: 2rem;
+   display: flex;
+   justify-content: center; align-items: center;
+   opacity: 0.5; transition: 0.3s;
+}
+.top_button{
+   display: block;
+   width: 50%; height: 50%;
+   background: 50% 50% /110%  url(../img/upper_arrow.png) no-repeat;
+}
+.top_button_wrapper:hover{opacity: 0.9;}
+.top_button_wrapper:hover .top_button{
+   animation: top_button_ani 0.5s ease-in-out 0.1s alternate infinite ;
+}
+
+   @keyframes top_button_ani {
+      0%{transform: translateY(30%);}
+      100%{transform: translateY(-30%);}
+   }
+
+/* ----------------------🎃nav 버튼------------------------ */
+
+
+
+.nav_button{position: fixed; display: inline-flex; 
+   width: 90px; height: 90px;
+   justify-content: center;
+   align-items: center;
+   right: 3rem; top: 3rem;
+   z-index: 110;
+   border-radius: 1rem;
+   backdrop-filter: blur(10px);
+   background-color: rgba(155, 155, 155, 0.3);
+   box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 4px, rgba(0, 0, 0, 0.7) 0px 8px 20px 6px, rgba(0, 0, 0, 0.4) 0px -5px 1px inset;
+}
+.nav_button>img{
+   position: relative;
+    width: 20px; 
+   transition: 0.3s;
+}
+.logo1{top: 3px;height: 65px;}
+.logo3{top: 1px; height: 67px; transform: rotate(3deg) translateX(-3px);}
+
+.nav_button.on .logo1{transform: rotate(-45deg) translate(9px,13px); }
+.nav_button.on .logo2{transform: scaleY(0);}
+.nav_button.on .logo3{transform: rotate(45deg) translate(-15px,13px);}
+
+
+/* -------------------------🎃nav--------------------------- */
+
+.nav{position: fixed;
+   width: 0; height: 0;
+   right: 4vw; top: 4vw;
+   background-color: rgba(0, 0, 0, 0.8);
+   box-shadow: 0px 0px 30px 0px #79b945;
+   backdrop-filter: blur(10px);
+   z-index: 100;
+   padding: 0 10vw;
+   align-items: center;
+   display: flex;
+   visibility: hidden;
+   font-family: 'Montserrat', sans-serif;
+   font-weight: 600;
+   transform-origin: right top;
+   opacity: 0;
+   transition: 0.3s;
+   backdrop-filter: blur(10px);
+   background-color: rgba(155, 155, 155, 0.2);
+   border-radius: 3rem;
+   box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 4px, rgba(0, 0, 0, 0.7) 0px 8px 20px 6px, rgba(0, 0, 0, 0.4) 0px -7px 1px inset;
+}
+.nav.on{
+   width: 92vw; height: calc(92vh - 4vw);
+   visibility:visible;
+   opacity: 1;
+}
+.nav_wrapper{display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   justify-content: space-between;
+}
+.nav .nav_list{display: flex;
+   flex-direction: column;
+   align-items: start;
+   gap: 3rem;
+   font-size: 3rem;
+ }
+
+.nav .nav_list span{overflow: hidden; transition: none; } 
+.nav .nav_list span:hover{transform: scale(1.4); transform-origin: left;transition: 0.3s;}
+
+.nav a{color: #fff;}
+
+.nav .nav_desc{
+   width: 40vw; height: 100%;
+   font-size: 3rem;
+}
+.nav .nav_desc_inner{
+   width: 100%; height: 100%;
+}
+.nav_desc_item{
+   position: relative;
+   width: 100%; height: 100%; 
+   transform-origin: right center;
+   display: none;
+}
+.nav_desc_item.active{display: flex; flex-direction: column; gap: 2rem;
+   animation: nav_ani ;
+   animation-duration: 1s;
+}
+
+@keyframes nav_ani {
+   0%{transform: skewx('-90deg');}
+   100%{transform: skewx('0deg');}
+}
+.nav_desc_img{ 
+   width: 100%; height: 40vh;
+   border-radius: 1rem;
+   background: 50% 50% / cover no-repeat;}
+.item1 .nav_desc_img{background-image: url(../img/section1.JPG);}
+.item2 .nav_desc_img{background-image: url(../img/section2.png);}
+.item3 .nav_desc_img{background-image: url(../img/section3.png);}
+.item4 .nav_desc_img{background-image: url(../img/section4.png);}
+.item5 .nav_desc_img{background-image: url(../img/section5.png);}
+
+
+
+.nav .nav_desc p{color: #fff;}
+
+
+
+/* -----------------------🎃section-1-------------------------- */
+
+.section1{ overflow: hidden; }
+
+.section1_container{
+   height: 100vh; width: 100%; 
+   padding: 12% 19% 5%; 
+   position: absolute;
+   top: 0;
+}
+.home_wrapper{
+   position: relative;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.spline{
+   position: absolute;
+   width: 130%;
+   left: -15%; top: -50%;
+}
+.home_wrapper .monster{margin-bottom: 8%;}
+
+.home_wrapper .energy{margin-bottom: 13%;}
+
+
+/* ------------------------🎃text_scroll----------------------- */
+
+.text_scroll{ padding: 10rem 0;}
+.text_scroll .cover{
+   overflow: hidden ;
+   display: flex;
+   font-size: 14rem; /* 1rem=16px */
+   color: #fff;
+   padding: 2rem 0;
+   width: 100%;
+   margin-bottom: 10vh;
+   box-sizing: border-box;
+}
+
+.cover:nth-child(1){}
+.cover:nth-child(2){justify-content: flex-end;}
+
+
+/* ----------------------------🎃section2------------------------ */
+.section2{overflow: hidden; height: 100vh;position: relative;
+display: flex; justify-content: center; align-items: center;
+}
+.section2_container{
+   width: 140vw; height: 160vh; 
+   position: absolute; 
+   transition: 0.2s;
+}
+ul.box_list{
+   display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+li.box_list_box{
+   flex: 1 1 20%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   width: 20%;
+   height: 33.33%;
+}
+a.box-item{
+   width: 80%; height: 80%;
+   display: flex;
+   text-align: center;
+   align-items: center;
+   padding: 3rem;
+   position: relative;
+}
+
+span.frame-focus-line{
+   background-color: #777777;
+   position: absolute;
+   z-index: 1;
+   width: 0; height: 0;
+   transition: 1s;
+   transform-origin: center;
+   pointer-events: none;
+}
+span.focus-top{ 
+   top: 0; left: 50%;
+   transform: translateX(-50%);
+}
+span.focus-bottom{ 
+   bottom: 0; left: 50%;
+   transform: translateX(-50%);
+}
+span.focus-left{ 
+   left: 0; top: 50%;
+   transform: translateY(-50%);
+}
+span.focus-right{ 
+   right: 0; top: 50%;
+   transform: translateY(-50%);
+}
+li:hover span.focus-top,
+li:hover span.focus-bottom{
+width: 250vw; height: 1px;
+}
+li:hover span.focus-left,
+li:hover span.focus-right{
+width: 1px; height: 250vh;
+}
+
+
+span.frame_bar{
+   width: 2rem; height: 2rem;
+   border: 2px solid #fff;
+   position: absolute;
+   opacity: 0;
+   transition: 0.5s;
+}
+span.bar-top-left{
+   left: -8rem; top: -8rem; border-right: none; border-bottom: none;
+}
+span.bar-top-right{
+   right: -8rem; top: -8rem; border-left: none; border-bottom: none;
+}
+span.bar-bottom-left{
+   left: -8rem; bottom: -8rem; border-right: none; border-top: none;
+}
+span.bar-bottom-right{
+   right: -8rem; bottom: -8rem; border-left: none; border-top: none;
+}
+
+li:hover span.frame_bar{
+   opacity: 1;
+}
+li:hover span.bar-top-left{
+   left: 0; top: 0; border-right: none; border-bottom: none;
+}
+li:hover span.bar-top-right{
+   right: 0; top: 0; border-left: none; border-bottom: none;
+}
+li:hover span.bar-bottom-left{
+   left: 0; bottom: 0; border-right: none; border-top: none;
+}
+li:hover span.bar-bottom-right{
+   right: 0; bottom: 0; border-left: none; border-top: none;
+}
+
+.box_main_content{
+   display: flex; flex-direction: column;
+   gap: 2rem;
+   justify-content: center; align-items: center;
+   color: #fff;
+   border-radius: 5px;
+   font-family: 'Montserrat', sans-serif;
+   box-shadow:rgba(0, 0, 0, 0.4) 0px 3px 4px, rgba(0, 0, 0, 0.7) 0px 8px 20px 4px, rgba(0, 0, 0, 0.5) 0px -5px 0px inset;
+   background:center/cover url(https://cdnb.artstation.com/p/assets/images/images/067/443/553/4k/catan-.jpg?1695376616);
+}
+h3.box_title{font-size: 2rem; font-weight: 600; 
+   text-shadow:  rgba(0, 0, 0, 0.5) -2px -2px 0px;
+   
+}
+
+p.box_text{
+   width: 80%;
+   font-size: 1.2rem;
+   line-height: 2rem;
+   font-weight: normal;
+   display: none;
+}
+li:hover p.box_text{
+   display: inline-block;
+}
+
+
+li .box_main_content{width: 100%; height: 100%;  background-color: rgb(81, 81, 81);}
+
+
+/* ------------------------------🎃section3------------------------- */
+
+.section3{ height: 500vh; }
+.section3_container{ width: 100%; height: 100vh;display: flex; 
+   justify-content: center;
+    align-items: center;
+    top: 0;overflow: hidden; position: sticky;
+    transition: 0.3s;
+}
+.particle{position: absolute; width: 100%; height: 100%; opacity: 0; transition: 0.3s;}
+.particle:nth-child(1){ opacity: 1;}
+
+.intro_wrap{
+   width: 90%;
+   display: flex; 
+   justify-content: space-between;
+   align-items: center;
+   position: absolute;
+   z-index: 10;
+   /* pointer-events: none;  */
+}
+.intro_card_wrap{width: 45%; height: 40rem;
+   overflow: hidden;
+}
+.intro_card{ height: 100%;
+    display: flex; transition: 0.3s;
+}
+
+.card_box{width: 100%; height: 100%; ;
+   flex-shrink: 0; display: flex; justify-content: center; align-items: center; 
+}
+.card_box .card_img{width: 80%; height: 80%; border-radius: 3rem;
+   box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 4px, rgba(0, 0, 0, 0.7) 0px 8px 20px 6px, rgba(0, 0, 0, 0.5) 0px -7px 1px inset;
+}
+.card_box .card_img1{background: center/cover url(https://cdnb.artstation.com/p/assets/images/images/065/914/859/large/amrit-thakkar-monster-energy-rock-scen.jpg?1691553563);
+
+}
+.card_box .card_img2{background: center/cover url(https://cdnb.artstation.com/p/assets/images/images/066/351/989/large/vlpx-08to1.jpg?1692704404);}
+.card_box .card_img3{background: center/cover url(../img/monster_white.png);}
+.card_box .card_img4{background: center/cover url(https://cdna.artstation.com/p/assets/images/images/058/506/292/large/samuel-kwadwo-monster-drink-dragon.jpg?1674318912);}
+
+.intro_desc_wrap{width: 45%; height: 40rem;  overflow: hidden;}
+.intro_desc{ height: 100%; 
+   display: flex; transition: 0.3s;
+   flex-direction: row-reverse;
+}
+.intro_content{
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+.intro_content_inner{
+   width: 80%; height: 80%;
+   display: flex; justify-content: center;
+   flex-direction: column; gap: 5rem;  padding: 0 3rem;
+   backdrop-filter: blur(10px);
+   background-color: rgba(155, 155, 155, 0.2);
+   border-radius: 3rem;
+   box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 4px, rgba(0, 0, 0, 0.7) 0px 8px 20px 6px, rgba(0, 0, 0, 0.4) 0px -7px 1px inset;
+}
+.intro_content h3{font-size: 5rem;}
+.intro_content2 h3{font-size: 4rem;}
+.intro_content4 h3{font-size: 4rem;}
+.intro_content p{font-size: 1.7rem; font-family: Montserrat, sans-serif;}
+
+
+#particles-1{background: 50% 50%/cover url(../img/blurbg_1.png) ; 
+}
+#particles-2{background: 50% 50%/cover url(https://cdna.artstation.com/p/assets/images/images/013/772/586/large/krzysztof-plonka-88978900.jpg?1541026203) }
+#particles-3{background: 50% 50%/cover url(https://cdnb.artstation.com/p/assets/images/images/005/911/619/large/martin-leyba-himalaya.jpg?1494620011) }
+#particles-4{background: 50% 50%/120% url(https://cdna.artstation.com/p/assets/images/images/050/977/066/large/games-artist-rana-2-keyshot.jpg?1656150573) }
+/* #particles-js{background: 50% 50%/cover #0a0a0a ; 
+} */
+
+
+/* ----------------------------🎃section4--------------------------- */
+/* .section4{width: 100%; height: 100vh;} */
+.section4{margin-top: 15vw;
+   margin-bottom: 20vh;
+   padding: 0 20px;
+   font-family: 'Noto Sans KR', sans-serif;
+   overflow: hidden;
+}
+
+.section4 .port_wrap{position: relative;}
+.section4 .port_wrap .port_title{
+   top: 100px;
+   position: static;
+   width: 100%;
+   height: 3.5vw; font-size: 3vw;
+   line-height: 1;
+   font-weight: 900; 
+   border-bottom: 1px solid #949494;
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-end;
+   background: 0% 50% / 33% no-repeat url(../img/who\ whith\ us.png);
+}
+
+.section4 .port_wrap .port_desc{
+   position: relative;
+   display: flex;
+   margin-top: 20px;
+   width: 700%; gap: 20px;
+}
+.section4 .port_wrap .port_desc .port{
+   width: 500px;
+   background-color: #a0a0a0;
+   padding: 40px;
+   padding-bottom: 60px;
+   border-radius: 1rem;
+   box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 4px, rgba(0, 0, 0, 0.7) 0px 8px 20px 6px, rgba(0, 0, 0, 0.4) 0px -7px 1px inset;
+}
+.section4 .port_wrap .port_desc .port span{
+   font-family: 'Poppins', sans-serif;
+   opacity: 0.5;
+   padding-bottom: 10px;
+   display: inline-block;
+}
+.section4 .port_wrap .port_desc .port .img{
+   width: 100%; height: 300px;
+   border-radius: 10px;
+   display: block;
+   background-size: cover;
+   background-position: center center;
+}
+.section4 .port_wrap .port_desc .port h3{
+   font-size: 1.7rem;
+   text-align: center;
+   padding: 30px 0 10px;
+   font-weight: 900;
+   color: #242424;
+   border-bottom: 1px solid #5f5953
+}
+.section4 .port_wrap .port_desc .port p{
+   padding-top: 1.5rem;
+   color: #292929;
+   font-weight: bold;
+   line-height: 1.4;
+}
+
+.port_desc .port1 .img{background-image: url("https://cdnb.artstation.com/p/assets/images/images/041/048/817/large/hongworks-design-am18-lines-1.jpg?1630602098");}
+.port_desc .port2 .img{background-image: url("https://cdnb.artstation.com/p/assets/images/images/052/965/667/large/alfa-maister-mostro.jpg?1661112147");}
+.port_desc .port3 .img{background-image: url("https://cdnb.artstation.com/p/assets/images/images/044/546/129/large/yuyang-su-20211223.jpg?1640334229");}
+.port_desc .port4 .img{background-image: url("https://cdna.artstation.com/p/assets/images/images/044/207/156/4k/mattia-vezzoli-mxgp2020-02.jpg?1639394126");}
+.port_desc .port5 .img{background-image: url("https://cdnb.artstation.com/p/assets/images/images/028/657/139/4k/lynch-designed-chrome-2.jpg?1595109799");}
+.port_desc .port6 .img{background-image: url("https://cdna.artstation.com/p/assets/images/images/028/656/816/4k/lynch-designed-chrome-1.jpg?1595108563");}
+.port_desc .port7 .img{background-image: url("https://cdna.artstation.com/p/assets/images/images/059/355/780/large/veulas-6.jpg?1676218696");}
+.port_desc .port8 .img{background-image: url("https://cdnb.artstation.com/p/assets/images/images/004/038/205/large/kal-yan-polischuk-lp640-27a.jpg?1479737646");}
+.port_desc .port9 .img{background-image: url("https://cdna.artstation.com/p/assets/images/images/001/083/368/large/matt-bernal-monster-4-runner.jpg?1439690809");}
+.port_desc .port10 .img{background-image: url("https://cdna.artstation.com/p/assets/images/images/020/540/424/large/corey-burnett-cleaned-01.jpg?1568178611");}
+.port_desc .port11 .img{background-image: url("https://cdna.artstation.com/p/assets/images/images/042/146/780/large/abdelmoujib-khabouiz-render-1.jpg?1633693569");}
+.port_desc .port12 .img{background-image: url("https://cdna.artstation.com/p/assets/images/images/063/626/492/large/anfuture-drink-can1.jpg?1685983942");}
+.port_desc .port13 .img{background-image: url("https://cdna.artstation.com/p/assets/images/images/013/362/240/large/farooq-khan-1.jpg?1539245863");}
+.port_desc .port14 .img{background-image: url("https://cdnb.artstation.com/p/assets/images/images/039/675/363/large/hongworks-design-c8r-1.jpg?1626615229");}
+.port_desc .port15 .img{background-image: url("https://cdnb.artstation.com/p/assets/images/images/026/382/409/large/ginger-l-v-a-render-1.jpg?1588628721");}
+.port_desc .port16 .img{background-image: url("https://cdnb.artstation.com/p/assets/images/images/002/646/115/large/sarathonux-kor-back-alley-dash.jpg?1464057820");}
+.port_desc .port17 .img{background-image: url("https://cdnb.artstation.com/p/assets/images/images/056/233/567/large/john-guerrero-004.jpg?1668755222");}
+.port_desc .port18 .img{background-image: url("https://cdna.artstation.com/p/assets/images/images/029/404/528/large/mikhail-sachko-3.jpg?1597425493");}
+.port_desc .port19 .img{background-image: url("https://cdna.artstation.com/p/assets/images/images/044/377/534/large/yuyang-su-20210421-logo-2-0.jpg?1639821617");}
+.port_desc .port20 .img{background-image: url("https://cdna.artstation.com/p/assets/images/images/027/335/732/4k/lynch-designed-monster-energy.jpg?1591240869");}
+
+
+
+.port{
+    transition : all 0.1s;
+   position: relative;
+   overflow: hidden  ;
+ }
+
+.overlay {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   top: 0; left: 0;
+   background: linear-gradient(105deg,
+   transparent 40%,
+   rgba(255, 219, 112, 0.8) 45%,
+   rgba(132, 50, 255 ,0.6) 50%,
+   transparent 54%);
+   filter: brightness(0.5) opacity(0.2);
+   mix-blend-mode: color-dodge;
+   background-size: 150% 150%;
+   background-position: 100%;
+   transition: all 0.1s;
+   border-radius: 1.5rem;
+ }
+ .glare {
+   position: absolute;
+   top: 0; left: 0;
+   width: 100%; height: 100%;
+   transform: translateZ(1.41px);
+   opacity: 1  ;
+   mix-blend-mode: overlay;
+   background-image: radial-gradient( farthest-corner circle at 50% 50%, hsla(0, 0%, 100%, 0.8) 10%, hsla(0, 0%, 100%, 0.65) 20%, hsla(0, 0%, 0%, 0.5) 90% );
+   border-radius: 1rem;
+   
+}
+
+/* --------------------------🎃section5--------------------------- */
+
+.section5{height: 100vh; display: flex; flex-direction: column;
+   align-items: center; justify-content: center; gap: 4rem;
+   margin-bottom: 20vh; position: relative; overflow: hidden;
+   padding: 20vh 0 10vh; box-sizing: content-box;
+}
+.rotation_img{position: absolute;}
+.rotation_img.img1{ width: 40rem; height: 40rem;  top: 0%;
+   left: -6%;}
+.rotation_img.img2{ width: 25rem; height: 25rem; bottom: 1%;
+   right: -6%;}
+
+.img1 .rotation_txt{width: 100%; height: 100%; 
+   background: 50% 50% / cover url(../img/Rotataion_txt.png) no-repeat;
+   animation: rotation_ani 20s infinite linear
+}
+.img1 .rotation_can{width: 100%; height: 100%; 
+   position: absolute; top: 0; left: 0;
+   background: 50% 50% / 30% url(../img/Rotation_can.png) no-repeat;
+   animation: rotation_ani2 30s infinite linear
+}
+.img2 .rotation_txt{width: 100%; height: 100%; 
+   background: 50% 50% / cover url(../img/Rotataion_txt.png) no-repeat;
+   animation: rotation_ani2 20s infinite linear
+}
+.img2 .rotation_can{width: 100%; height: 100%; 
+   position: absolute; top: 0; left: 0;
+   background: 50% 50% / 30% url(../img/Rotation_can.png) no-repeat;
+   animation: rotation_ani 30s infinite linear
+}
+
+@keyframes rotation_ani {
+   0%{transform: rotate(0deg);}
+   100%{transform: rotate(360deg);}
+}
+@keyframes rotation_ani2 {
+   0%{transform: rotate(0deg);}
+   100%{transform: rotate(-360deg);}
+}
+
+
+.section5 .event_title{
+   width: 30vw; height: 7vw;
+   background: 50% 50%/cover url(../img/event.png) no-repeat;}
+.section5 .event_wrapper{display: flex; width: 100%; height: 70%; 
+   justify-content: space-around;
+    font-family: 'Montserrat', sans-serif;
+}
+.section5 .wrapper{ height: 90%;
+   backdrop-filter: blur(10px);
+   background-color: rgba(155, 155, 155, 0.2);
+   border-radius: 3rem;
+   box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 4px, rgba(0, 0, 0, 0.7) 0px 8px 20px 6px, rgba(0, 0, 0, 0.4) 0px -7px 1px inset;
+}
+
+
+.left_wrapper{display: flex; flex-direction: column; justify-content: end; align-items: center;  width: 35%;
+   gap: 2rem;
+}
+.left_wrapper p{display: block; color: #fff; font-size: 2rem; margin-bottom: 5rem;}
+.left_wrapper .event_img{
+   width: 60%; height: 60%;
+   top: 40%; left: 50%; transform: translate(-50%,-50%);
+   position: absolute;
+   background: url(https://www.hatchwise.com/wp-content/uploads/2023/03/monster-energy-original-12-x-500-ml.png) center/contain no-repeat; 
+   transition: 0.3s;
+}
+.event_img:hover{width: 70%; height: 80%;}
+
+
+/* ----right_wrapper---  */
+
+.section5 .right_wrapper{display: flex; flex-direction: column; gap: 3rem;
+   justify-content: center; align-items: center;
+   color: #fff; width: 45%;
+}
+
+.right_wrapper p{font-size: 3rem; font-weight: 500;}
+
+.section5 .contents{ width: 75%; display: flex; flex-direction: column; gap:0.5rem;}
+/* 입력폼 */
+.error_next_box{opacity: 0; width: 100%; display: flex; justify-content: end;
+   font-weight: 600;
+}
+
+input{outline: none; }
+
+
+.total_wrap h3{
+   font-size: 1.3rem;
+   font-weight: 700;
+}
+.box{
+   position: relative;
+   width: 100%;
+   border: 1px solid #dadada;
+   background-color: rgb(121 121 121);
+   padding: 5px 7px;
+   display: flex;
+   align-items: center;
+   box-sizing: border-box;
+}
+.total_wrap{display: flex;
+   justify-content: space-between;
+}
+.total_wrap:nth-child(3){display: flex;
+   justify-content: space-between;
+}
+.email_wrap,
+.subject_wrap,
+.message_wrap{width: 80%; font-size: 14px; align-items: center;}
+
+.mail_simbol{padding: 10px;}
+
+.section5 .contents div{display: flex;}
+.box.int_id{padding-right: 100px;}
+.total_wrap label{height: 42px; display: flex; align-items: center; 
+} 
+.int{
+   display: block;
+   width: 100%; height: 30px;
+   border: none;
+   font-size: 15px;
+   background-color:  rgb(121 121 121);
+   color: #fff;
+}
+textarea{
+   width: 100%; border: none; background-color:  rgb(121 121 121);
+   color: #fff;
+}
+.step_url{position: absolute;
+   right: 13px; top: 50%;
+   transform: translateY(-50%);
+   color: #8e8e8e;
+   font-size: 15px;
+}
+#bir_mm{width: 147px;}
+select.sel{
+   border: none;
+   width: 100px; height: 30px; font-size: 15px;
+   appearance: none; /* 다운화살표삭제 */
+   background: url(https://parspng.com/wp-content/uploads/2021/11/arrowpng.parspng.com-13.png)no-repeat 100% 50%;
+   background-size: 20px 20px;
+   outline: none;
+   color: #fff;
+}
+select.sel option{color: #000;}
+
+/*submit 버튼 */
+.btn_area{}
+.btn_area #btnJoin{
+    width: 100%; border: none;
+    background-color: #1a1a1a;
+    font-size: 20px; color: rgb(4 189 17) ;
+    padding: 21px 0 17px;
+    cursor: pointer;
+    border-radius:2rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 6px 10px, rgba(0, 0, 0, 0.3) 0px 5px 3px -1px, rgba(0, 0, 0, 0.4) 0px -5px 1px inset;
+}
+
+
+
+/* ------------------------------footer--------------------------- */
+
+.grid{display: grid;}
+
+.footer{
+   position: relative;
+   padding-block: 0 2rem;
+   overflow: hidden;
+   background: #0a0a0a;
+   color: #fff;
+   font-family: Montserrat, sans-serif;
+   border-top: 1px solid #919191;
+   height: 60vh;
+}
+.footer_vidio_wrap{overflow: hidden;  display: block; position: absolute;
+   width: 100%;
+   top: 50%; left: 50%; transform: translate(-50%,-50%);}
+.footer_vidio_wrap video{width: 100%; height: 100%;}
+.footer_wrap{position: absolute;  width: 100%; height: 100%; display: flex;
+   flex-direction: column; justify-content: center;
+   backdrop-filter: blur(10px);
+   background-color: rgb(0 0 0 / 50%);
+}
+.footer_container {
+   top: 10rem;
+   width: 70%;
+   
+   grid-template-columns: repeat(2,max-content);
+   justify-content: space-between;
+}  
+.footer_container{gap: 3rem;}
+.footer_logo{
+   display: inline-flex;
+   align-items: center;
+   font-family: 'Copperplate', sans-serif;
+   font-size: 1.7rem;
+   margin-bottom: 2rem;
+   gap: 0.5rem;
+   transition: 0.3s;
+}
+
+.footer_logo img{width: 187px;}
+.beverage_logo img{width: 115px; display: block;}
+.footer_content{display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(3,1fr);
+}
+h3.footer_title{font-size: 1.2rem; margin-bottom: 2rem;}
+.footer_links{display: grid; gap: 0.7rem;}
+.footer_links li{}
+.footer_link{
+   color: #d9d9d9;
+}
+.footer_link:hover{color: #fff;}
+
+
+
+.footer_info{
+   width: 70%;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   margin-top: 8.5rem;
+}
+.footer_card{display: flex; gap: 1rem;
+   justify-content: center;
+}
+.footer_card img{width: 35px;}
+
+.footer_copy{
+   order: -1;
+   text-align: center;
+   color: #d9d9d9;
+   font-weight: normal;
+}
+
+.thx_wrap{
+   position: fixed;
+   width: 100%; height: 100vh;
+   top: 50%; left: 50%;
+   transform: translate(-50%,-50%);
+   background-color: rgba(155, 155, 155, 0.2);
+   backdrop-filter: blur(10px);
+   display: flex;
+   justify-content: center; align-items: center;
+   z-index: 140;
+   display: none;
+   border-radius: 3rem;
+}
+.thx{
+    width: 40vw; height: 40vw; 
+   background-color: tomato;
+   display: flex; flex-direction: column;
+   align-items: center; justify-content: center;
+   border-radius: 3rem; gap: 2rem;
+}
+.thx h2{font-size: 2rem; color: #fff;}
+
+.thx .thx_img{width: 45%; height: 45%; background: 50% 50% / cover url(https://emojigraph.org/media/joypixels/thumbs-up_1f44d.png) no-repeat;}
+
+.close_button{width: 10rem; height: 4rem; background-color: #fff;
+   display: flex; align-items: center; justify-content: center;
+   border-radius: 1.5rem;
+}
+.close_button p{font-size: 3rem;}
